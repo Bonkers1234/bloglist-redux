@@ -2,14 +2,14 @@
 import { useState } from 'react'
 import blogService from '../services/blogs'
 
-const CreateForm = ({ createBlog }) => {
+const CreateForm = ({ createNewBlog }) => {
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
   const [url, setUrl] = useState('')
 
   const handleCreate = async (event) => {
     event.preventDefault()
-    createBlog({ title, author, url, likes: 0 })
+    createNewBlog({ title, author, url, likes: 0 })
     setTitle('')
     setAuthor('')
     setUrl('')
