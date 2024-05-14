@@ -5,9 +5,12 @@ import LoginForm from './components/LoginForm'
 import CreateForm from './components/CreateForm'
 import Notification from './components/Notification'
 import Togglable from './components/Togglable'
+import Users from './components/Users'
+import User from './components/User'
 import { notifyWith } from './reducers/noticifationReducer'
 import { getBlogs, createBlog, removeBlog, likeBlog } from './reducers/blogsReducer'
 import { setUser, clearUser } from './reducers/userReducer'
+import { Routes, Link, Route, useMatch } from 'react-router-dom'
 
 const App = () => {
   const user = useSelector(({ user }) => user)
@@ -73,6 +76,10 @@ const App = () => {
             canRemove={user && blog.user.username === user.username}
           />
         )}
+        <Routes>
+          <Route path='/users' element={<Users />} />
+          <Route path='/users/:id' element={<User />} />
+        </Routes>
       </div>}
     </div>
   )
