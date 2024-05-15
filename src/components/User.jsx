@@ -1,8 +1,15 @@
 
-import { useLocation } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
 
 const User = () => {
-  const user = useLocation().state
+  const id = useParams().id
+  const user = useSelector(({ users }) => users.find(user => user.id === id))
+
+  // Fixes first render 'user' undefined problem
+  if(!user) {
+    return null
+  }
 
   return (
     <div>

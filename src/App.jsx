@@ -10,13 +10,15 @@ import User from './components/User'
 import { notifyWith } from './reducers/noticifationReducer'
 import { getBlogs, createBlog, removeBlog, likeBlog } from './reducers/blogsReducer'
 import { setUser, clearUser } from './reducers/userReducer'
-import { Routes, Link, Route, useMatch } from 'react-router-dom'
+import { getUsers } from './reducers/usersReducer'
+import { Routes, Route } from 'react-router-dom'
+import BlogList from './components/BlogList'
+import BlogDetail from './components/BlogDetail'
 
 const App = () => {
   const user = useSelector(({ user }) => user)
 
   const dispatch = useDispatch()
-  const blogs = useSelector(({ blogs }) => blogs)
 
   const createFormRef = useRef()
 
@@ -28,21 +30,13 @@ const App = () => {
     dispatch(setUser())
   },[dispatch])
 
+  useEffect(() => {
+    dispatch(getUsers())
+  },[dispatch])
+
   const logout = () => {
     dispatch(clearUser())
     dispatch(notifyWith('Logged out!'))
-  }
-
-  const blogLike = async (blog) => {
-    dispatch(likeBlog({ ...blog, likes: blog.likes + 1, user: blog.user.id }))
-    dispatch(notifyWith(`You liked '${blog.title}' by '${blog.author}'`))
-  }
-
-  const remove = async (blog) => {
-    if(window.confirm(`Are you sure you want to remove '${blog.title}' by '${blog.author}'?`)) {
-      dispatch(removeBlog(blog.id))
-      dispatch(notifyWith(`Blog '${blog.title}' by '${blog.author}' removed.`))
-    }
   }
 
   const createNewBlog = async (newBlog) => {
@@ -67,18 +61,11 @@ const App = () => {
             createNewBlog={createNewBlog}
           />
         </Togglable>
-        {[...blogs].sort((a, b) => b.likes - a.likes).map(blog =>
-          <Blog
-            key={blog.id}
-            blog={blog}
-            blogLike={() => blogLike(blog)}
-            remove={() => remove(blog)}
-            canRemove={user && blog.user.username === user.username}
-          />
-        )}
         <Routes>
+          <Route path='/' element={<BlogList />}/>
           <Route path='/users' element={<Users />} />
           <Route path='/users/:id' element={<User />} />
+          <Route path='/blogs/:id' element={<BlogDetail />} />
         </Routes>
       </div>}
     </div>
