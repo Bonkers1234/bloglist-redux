@@ -1,6 +1,5 @@
 
 import { useState } from 'react'
-import blogService from '../services/blogs'
 
 const CreateForm = ({ createNewBlog }) => {
   const [title, setTitle] = useState('')
@@ -13,26 +12,6 @@ const CreateForm = ({ createNewBlog }) => {
     setTitle('')
     setAuthor('')
     setUrl('')
-    // const newBlog = {
-    //   title,
-    //   author,
-    //   url
-    // }
-
-    // try {
-    //   toggleVis.current.toggleVisibility()
-    //   const savedBlog = await blogService.create(newBlog)
-    //   setBlogs(blogs.concat(savedBlog))
-    //   setTitle('')
-    //   setAuthor('')
-    //   setUrl('')
-    //   notifyWith(`New blog '${savedBlog.title}' by '${savedBlog.author}' added!`)
-    // } catch(error) {
-    //   setTitle('')
-    //   setAuthor('')
-    //   setUrl('')
-    //   notifyWith(error.response.data.error, 'error')
-    // }
   }
 
   return (
