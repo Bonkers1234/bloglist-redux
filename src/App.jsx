@@ -1,33 +1,23 @@
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
+import { Routes, Route } from 'react-router-dom'
+import { useStartupData } from './hooks'
 import LoginForm from './components/LoginForm'
 import Notification from './components/Notification'
 import Users from './components/Users'
 import User from './components/User'
 import Navbar from './components/Navbar'
-import { getBlogs } from './reducers/blogsReducer'
-import { setUser } from './reducers/userReducer'
-import { getUsers } from './reducers/usersReducer'
-import { Routes, Route } from 'react-router-dom'
 import BlogList from './components/BlogList'
 import BlogDetail from './components/BlogDetail'
 
 const App = () => {
   const user = useSelector(({ user }) => user)
 
-  const dispatch = useDispatch()
+  const startupData = useStartupData()
 
   useEffect(() => {
-    dispatch(getBlogs())
-  }, [dispatch])
-
-  useEffect(() => {
-    dispatch(setUser())
-  },[dispatch])
-
-  useEffect(() => {
-    dispatch(getUsers())
-  },[dispatch])
+    startupData()
+  },[])
 
   return (
     <div>
