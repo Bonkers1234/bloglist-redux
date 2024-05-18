@@ -1,5 +1,5 @@
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { clearUser } from '../reducers/userReducer'
 import { notifyWith } from '../reducers/noticifationReducer'
@@ -8,8 +8,11 @@ const Navbar = () => {
   const dispatch = useDispatch()
   const user = useSelector(({ user }) => user)
 
+  const navigate = useNavigate()
+
   const logout = () => {
     dispatch(clearUser())
+    navigate('/')
     dispatch(notifyWith('Logged out!'))
   }
 

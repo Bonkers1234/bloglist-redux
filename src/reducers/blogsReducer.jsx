@@ -17,11 +17,14 @@ const blogsSlice = createSlice({
     },
     blogLike(state, action) {
       return state.map(b => b.id === action.payload.id ? action.payload : b)
+    },
+    blogAddComment(state, action) {
+      return state.map(b => b.id === action.payload.id ? action.payload : b)
     }
   }
 })
 
-export const { blogGet, blogCreate, blogDelete, blogLike } = blogsSlice.actions
+export const { blogGet, blogCreate, blogDelete, blogLike, blogAddComment } = blogsSlice.actions
 
 export const getBlogs = () => {
   return async dispatch => {
@@ -48,6 +51,13 @@ export const likeBlog = (object) => {
   return async dispatch => {
     const updatedBlog = await blogService.update(object)
     dispatch(blogLike(updatedBlog))
+  }
+}
+
+export const addCommentBlog = (object) => {
+  return async dispatch => {
+    const updatedBlog = await blogService.addComment(object.id, object.comment)
+    dispatch(blogAddComment(updatedBlog))
   }
 }
 
