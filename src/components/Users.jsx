@@ -9,14 +9,16 @@ const Users = () => {
     <>
       {!users
         ? null
-        : <div>
+        : <div className='m-5'>
           <h2>Users:</h2>
-          <table>
-            <tbody>
+          <table className='table table-striped table-hover table-secondary'>
+            <thead>
               <tr>
                 <th>User:</th>
                 <th>Blogs created</th>
               </tr>
+            </thead>
+            <tbody className='table-group-divider table-primary'>
               {users.map(user =>
                 <tr key={user.id}>
                   <td>

@@ -44,15 +44,19 @@ const BlogList = () => {
           createNewBlog={createNewBlog}
         />
       </Togglable>
-      {[...blogs].sort((a, b) => b.likes - a.likes).map(blog =>
-        <Blog
-          key={blog.id}
-          blog={blog}
-          blogLike={() => blogLike(blog)}
-          remove={() => remove(blog)}
-          canRemove={user && blog.user.username === user.username}
-        />
-      )}
+      <div className="row row-cols-1 row-cols-sm-2 gx-2">
+        {[...blogs].sort((a, b) => b.likes - a.likes).map(blog =>
+          <div key={blog.id} className="col">
+            <Blog
+              key={blog.id}
+              blog={blog}
+              blogLike={() => blogLike(blog)}
+              remove={() => remove(blog)}
+              canRemove={user && blog.user.username === user.username}
+            />
+          </div>
+        )}
+      </div>
     </>
   )
 }
