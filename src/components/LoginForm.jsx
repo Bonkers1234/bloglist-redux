@@ -25,26 +25,32 @@ const LoginForm = () => {
   }
 
   return (
-    <div>
+    <div className='text-center mt-5'>
       <h2>log in to application</h2>
-      <form onSubmit={handleLogin}>
-        <div>
-                    username
+      <form onSubmit={handleLogin} className='w-25 mx-auto'>
+        <div className='form-floating mb-3'>
           <input
+            className='form-control'
+            placeholder='Username'
             type="text"
             name="Username"
+            id='Username'
             value={username}
             onChange={({ target }) => setUsername(target.value)}
           />
+          <label htmlFor='Username'>Username</label>
         </div>
-        <div>
-                    password
+        <div className='form-floating mb-3'>
           <input
+            className='form-control'
+            placeholder='Password'
             type="password"
             name="Password"
+            id='Password'
             value={password}
             onChange={({ target }) => setPassword(target.value)}
           />
+          <label htmlFor='Password'>Password</label>
         </div>
         <button type="submit">login</button>
       </form>

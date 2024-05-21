@@ -15,14 +15,12 @@ const CreateForm = ({ createNewBlog }) => {
   }
 
   return (
-    <form onSubmit={handleCreate}>
+    <form onSubmit={handleCreate} className='mb-1'>
       <h2>Create New Blog:</h2>
       <div className='input-group input-group-sm'>
-        {/* <label htmlFor='title' className='form-label'>title</label> */}
-        <div className='input-group-text'><b>Title</b></div>
+        <span className='input-group-text'><b>Title</b></span>
         <input
           className='form-control'
-          // id='title'
           type="text"
           name="Title"
           placeholder='Title'
@@ -31,11 +29,9 @@ const CreateForm = ({ createNewBlog }) => {
         />
       </div>
       <div className='input-group input-group-sm'>
-        {/* <label htmlFor='author' className='form-label'>author</label> */}
-        <div className='input-group-text'><b>Author</b></div>
+        <span className='input-group-text'><b>Author</b></span>
         <input
           className='form-control'
-          // id='author'
           type="text"
           name="Author"
           placeholder='Author'
@@ -43,11 +39,9 @@ const CreateForm = ({ createNewBlog }) => {
           onChange={({ target }) => setAuthor(target.value)}/>
       </div>
       <div className='input-group input-group-sm'>
-        {/* <label htmlFor='url' className='form-label'>url</label> */}
-        <div className="input-group-text"><b>Url</b></div>
+        <span className="input-group-text"><b>Url</b></span>
         <input
           className='form-control'
-          // id='url'
           type="text"
           name="Url"
           placeholder='Url'
