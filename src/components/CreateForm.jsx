@@ -15,7 +15,7 @@ const CreateForm = ({ createNewBlog }) => {
   }
 
   return (
-    <form onSubmit={handleCreate} className='mb-1'>
+    <form onSubmit={handleCreate}>
       <h2>Create New Blog:</h2>
       <div className='input-group input-group-sm'>
         <span className='input-group-text'><b>Title</b></span>
@@ -48,7 +48,7 @@ const CreateForm = ({ createNewBlog }) => {
           value={url}
           onChange={({ target }) => setUrl(target.value)}/>
       </div>
-      <button type="submit">create</button>
+      <button className='btn btn-primary m-1' type="submit">create</button>
     </form>
   )
 }

@@ -35,20 +35,26 @@ const BlogDetail = () => {
           {blog.title} - {blog.author}
         </h2>
         <div><a href={`${blog.url}`}>{blog.url}</a></div>
-        <div>{blog.likes} likes <button onClick={() => blogLike(blog)}>like</button></div>
+        <div>{blog.likes} likes <button className='btn btn-outline-primary mx-1' onClick={() => blogLike(blog)}>like</button></div>
         <div>added by {blog.user.name}</div>
       </div>
       <div>
         <h2>Comments:</h2>
         <form onSubmit={commentSubmit}>
-          <input
-            type='text'
-            value={comment}
-            onChange={({ target }) => setComment(target.value)}
-          />
-          <button type='submit'>
-            add comment
-          </button>
+          <div className="input-group input-group-sm w-25">
+            <input
+              className='form-control'
+              type='text'
+              value={comment}
+              onChange={({ target }) => setComment(target.value)}
+            />
+            <button
+              className='input-group-text btn btn-primary'
+              type='submit'
+            >
+              add comment
+            </button>
+          </div>
         </form>
         <ul>
           {blog.comments.map(comment => <li key={comment}>{comment}</li>)}

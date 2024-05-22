@@ -16,21 +16,12 @@ const Navbar = () => {
     dispatch(notifyWith('Logged out!'))
   }
 
-  const style = {
-    marginRight: 5
-  }
-
-  const divStyle = {
-    background: 'lightgrey',
-    padding: 5
-  }
-
   return (
     <>
-      <div style={divStyle}>
-        <Link to={'/'} style={style} >blogs</Link>
-        <Link to={'/users'} style={style} >users</Link>
-        <span>{user.name} logged in <button onClick={logout}>logout</button></span>
+      <div className='bg-info bg-gradient p-2'>
+        <Link to={'/'} className='btn btn-primary me-2' >blogs</Link>
+        <Link to={'/users'} className='btn btn-primary me-2' >users</Link>
+        <span>{user.name} logged in <button className='btn btn-light' onClick={logout}>logout</button></span>
       </div>
       <div>
         <h2>Blog app</h2>
