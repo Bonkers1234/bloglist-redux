@@ -13,7 +13,6 @@ const Navbar = () => {
   const logout = () => {
     dispatch(clearUser())
     navigate('/')
-    dispatch(notifyWith('Logged out!'))
   }
 
   return (

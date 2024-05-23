@@ -1,6 +1,7 @@
 
 import { createSlice } from '@reduxjs/toolkit'
 import loginService from '../services/login'
+import { notifyWith } from './noticifationReducer'
 
 const userSlice = createSlice({
   name: 'user',
@@ -31,14 +32,20 @@ export const clearUser = () => {
   return async dispatch => {
     localStorage.removeItem('loggedBlogappUser')
     dispatch(userClear())
+    dispatch(notifyWith('Logged out!'))
   }
 }
 
 export const loginUser = (credentials) => {
   return async dispatch => {
-    const userInfo = await loginService.login(credentials)
-    localStorage.setItem('loggedBlogappUser', JSON.stringify(userInfo))
-    dispatch(userSet(userInfo))
+    try {
+      const userInfo = await loginService.login(credentials)
+      localStorage.setItem('loggedBlogappUser', JSON.stringify(userInfo))
+      dispatch(userSet(userInfo))
+      dispatch(notifyWith('Welcome'))
+    } catch(error) {
+      dispatch(notifyWith(error.response.data.error, 'error'))
+    }
   }
 }
 

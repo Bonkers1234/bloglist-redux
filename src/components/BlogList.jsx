@@ -15,13 +15,8 @@ const BlogList = () => {
   const createFormRef = useRef()
 
   const createNewBlog = async (newBlog) => {
-    try {
-      dispatch(createBlog(newBlog))
-      dispatch(notifyWith(`New blog '${newBlog.title}' by '${newBlog.author}' added!`))
-      createFormRef.current.toggleVisibility()
-    } catch(error) {
-      dispatch(notifyWith(error.response.data.error, 'error'))
-    }
+    dispatch(createBlog(newBlog))
+    createFormRef.current.toggleVisibility()
   }
 
   const blogLike = async (blog) => {
