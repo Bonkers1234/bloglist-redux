@@ -18,7 +18,7 @@ const User = () => {
       <div className='row row-cols-1 row-cols-sm-2 g-1'>
         {user.blogs.map(blog =>
           <div key={blog.id} className="card">
-            <h4 className="card-header">{blog.title}</h4>
+            <h4 className="card-header text-bg-dark bg-opacity-75">{blog.title}</h4>
             <div className="card-body">{blog.author}</div>
             <div className="card-footer">
               <a href={blog.url}>{blog.url}</a></div>
